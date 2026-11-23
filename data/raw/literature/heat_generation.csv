@@ -1,0 +1,8 @@
+source_id,pack_id,c_rate,heat_j_per_discharge,basis
+S2,CELL26650_S2,1,1183,reported
+S2,CELL26650_S2,3,2802,reported
+S2,CELL26650_S2,5,4545,reported
+S2,CELL42110_S2,1,1821,reported
+S2,CELL42110_S2,3,5925,reported
+S2,PRISM_S2,1,1688,reported
+S2,PRISM_S2,3,7005,reported

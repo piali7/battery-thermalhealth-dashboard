@@ -1,0 +1,5 @@
+threshold_id,metric,value,unit,band,basis
+TH_OPT_HIGH,T_SURFACE,35,C,optimal_upper,"optimal operating range 15-35 C (Ouyang/U-PEC hal-04316599)"
+TH_WARN,T_SURFACE,45,C,warning,"project design choice: early-warning level"
+TH_CRIT,T_SURFACE,60,C,critical,"maximum operating temperature should not exceed 60 C (hal-04316599)"
+TH_DT_LIMIT,DT_CELL,5,C,uniformity_limit,"common design guideline for module temperature uniformity"

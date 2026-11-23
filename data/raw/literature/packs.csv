@@ -1,0 +1,10 @@
+pack_id,source_id,pack_label,cell_format,chemistry,cell_capacity_ah,n_cells,rows,cols,electrical_config,cell_mass_kg,cell_cp_j_per_kgk,cell_area_m2,cell_resistance_mohm,mass_basis,cp_basis
+CELL18650_S1,S1,Single 18650 cell (Sanyo),18650,Li-ion (Sanyo),3.2,1,1,1,1S1P,0.046,1000,0.00418,,assumed typical 18650,assumed typical
+MOD18650_2x2_S1,S1,2x2 module of 18650 (2S2P),18650,Li-ion (Sanyo),3.2,4,2,2,2S2P,0.046,1000,0.00418,,assumed typical 18650,assumed typical
+CELL26650_S2,S2,Single 26650 LFP cell,26650,LiFePO4,3.0,1,1,1,1S1P,0.089,1000,0.00637,15.33,reported,assumed typical
+CELL42110_S2,S2,Single 42110 LFP cell,42110,LiFePO4,,1,1,1,1S1P,0.188,1000,0.01728,9.35,reported,assumed typical
+PRISM_S2,S2,Single prismatic LFP cell 105x28x71 mm,prismatic,LiFePO4,,1,1,1,1S1P,0.387,1000,0.02477,10.75,reported,assumed typical
+MOD21700_4x4_S3,S3,4x4 module of 21700 thermal dummy cells,21700,NMC (dummy),,16,4,4,,,,,,,
+PACK_LTO12_S4,S4,12-cell LTO pouch pack,pouch,LTO,10,12,1,12,series (inferred by source cut-offs),0.449,1287,0.05559,,derived from reported density x dimensions,reported
+CELL_UNSPEC_S5,S5,Li-ion cell (per paper),unspecified,Li-ion,,1,1,1,,,,,,,
+CELL18650_S6,S6,Panasonic NCR18650B cell,18650,NCA,3.35,1,1,1,1S1P,,,,,,

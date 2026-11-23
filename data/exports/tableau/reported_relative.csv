@@ -1,0 +1,8 @@
+short_cite,pack_label,tms_label,baseline_tms,c_rate,metric_code,reduction_pct,value_basis,note
+Hussain et al. 2016,Li-ion cell (per paper),Nickel foam / paraffin,Natural air convection,2.0,SURFACE_T_REDUCTION,31.0,reported,nickel foam/paraffin vs natural air
+Hussain et al. 2016,Li-ion cell (per paper),Nickel foam / paraffin,Pure paraffin,2.0,SURFACE_T_REDUCTION,24.0,reported,nickel foam/paraffin vs pure PCM
+Energy Sources A 2023,Panasonic NCR18650B cell,Nickel foam / paraffin,Ambient air convection,2.0,SURFACE_T_REDUCTION,30.95,reported,nickel foam/paraffin vs ambient air
+Energy Sources A 2023,Panasonic NCR18650B cell,Nickel foam / paraffin,Pure paraffin,2.0,SURFACE_T_REDUCTION,24.0,reported,nickel foam/paraffin vs paraffin
+Energy Sources A 2023,Panasonic NCR18650B cell,Copper foam / paraffin,Ambient air convection,2.0,SURFACE_T_REDUCTION,34.0,reported,copper foam/paraffin vs ambient air
+Energy Sources A 2023,Panasonic NCR18650B cell,Copper foam / paraffin,Pure paraffin,2.0,SURFACE_T_REDUCTION,25.0,reported,copper foam/paraffin vs paraffin
+Sun et al. 2023,4x4 module of 21700 thermal dummy cells,Copper foam / paraffin,Pure paraffin,3.0,T_MAX_REDUCTION,10.4,reported,"60% DoD, 3C"

@@ -1,0 +1,401 @@
+<meta name="dash-one-writer">
+<style>
+.bt { font-family: var(--font-anthropic-sans); color: var(--color-fg); display: flex; flex-direction: column; gap: var(--cds-gap-xl); }
+.bt h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; }
+.bt h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0 0 var(--cds-gap-xs); }
+.bt .bt-sub { color: var(--color-fg-muted); font-size: var(--cds-font-size-caption); margin: 0 0 var(--cds-gap-sm); }
+.bt .bt-take { font-size: var(--cds-font-size-body); margin: var(--cds-gap-sm) 0 0; max-width: 62em; }
+.bt .bt-take b { font-variant-numeric: tabular-nums; }
+.bt .bt-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); border-left: 3px solid var(--color-border-line); padding-left: var(--cds-pad-sm); margin: var(--cds-gap-sm) 0 0; max-width: 62em; }
+.bt .bt-controls { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); align-items: center; }
+.bt .bt-controls label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); display: flex; gap: var(--cds-gap-xs); align-items: center; }
+.bt .bt-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: var(--cds-gap-md); }
+.bt .bt-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); }
+.bt .bt-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.bt .bt-big { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: 2rem; font-variant-numeric: tabular-nums; line-height: 1.2; margin: var(--cds-gap-xs) 0; }
+.bt .bt-cmp { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.bt .bt-good { color: var(--color-ok); font-weight: var(--cds-font-weight-medium); }
+.bt .bt-chart { position: relative; min-height: 280px; }
+.bt .bt-chart.bt-short { min-height: 170px; }
+.bt .bt-chart svg text { fill: var(--cds-text-secondary); font-size: var(--cds-font-size-caption); }
+.bt .bt-chart .domain, .bt .bt-chart .tick line { stroke: var(--cds-chart-axis); }
+.bt .bt-chart .bt-grid line { stroke: var(--cds-chart-grid); }
+.bt .bt-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); box-shadow: var(--cds-shadow-popover); border-radius: var(--cds-radius); padding: var(--cds-pad-sm); font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; white-space: nowrap; z-index: 2; }
+.bt .bt-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin-bottom: var(--cds-gap-xs); }
+.bt .bt-legend span::before { content: ""; display: inline-block; width: 12px; height: 3px; margin-right: 6px; vertical-align: middle; background: var(--sw); }
+.bt .bt-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--cds-gap-lg); }
+.bt .bt-tablewrap { overflow-x: auto; }
+.bt table.bt-table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.bt .bt-table th, .bt .bt-table td { padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); text-align: right; white-space: nowrap; }
+.bt .bt-table th:first-child, .bt .bt-table td:first-child, .bt .bt-table .bt-l { text-align: left; }
+.bt .bt-table th { color: var(--color-fg-muted); font-weight: var(--cds-font-weight-medium); }
+.bt .bt-pill { display: inline-block; padding: 1px 8px; border-radius: 999px; font-size: var(--cds-font-size-caption); border: 1px solid currentColor; }
+.bt details { font-size: var(--cds-font-size-caption); }
+.bt details summary { cursor: pointer; font-weight: var(--cds-font-weight-medium); font-size: var(--cds-font-size-body); }
+.bt details p, .bt details li { color: var(--color-fg-muted); max-width: 70em; }
+.bt .bt-err { color: var(--color-bad); font-size: var(--cds-font-size-caption); }
+</style>
+
+<div class="bt">
+  <header id="overview">
+    <h1>Battery Thermal Health Monitor — Metal Foam / PCM</h1>
+    <p class="bt-take">At 3C discharge, copper-foam/paraffin held the 2×2 18650 module at
+      <b data-draw="tk-foam" data-source="scorecard" data-field="peak_c" data-where="run_id=S1_MOD_CF_PA_10PPI_3C">—</b>&nbsp;°C
+      against <b data-draw="tk-base" data-source="scorecard" data-field="peak_c" data-where="run_id=S1_MOD_NC_3C">—</b>&nbsp;°C without PCM,
+      and cut the cell-to-cell spread from <b data-draw="tk-dtb" data-source="scorecard" data-field="dt_max_c" data-where="run_id=S1_MOD_NC_3C">—</b>&nbsp;°C
+      to <b data-draw="tk-dtf" data-source="scorecard" data-field="dt_max_c" data-where="run_id=S1_MOD_CF_PA_10PPI_3C">—</b>&nbsp;°C.</p>
+    <p class="bt-note">Peak temperatures and module spreads are published measurements. The curves between them are reconstructed with a thermal model calibrated so each run hits its published peak exactly; they show likely shape, not measured traces. Real lab logs load through the same pipeline and appear here as lab-measured runs.</p>
+  </header>
+
+  <section id="monitor">
+    <div class="bt-controls">
+      <label>Discharge rate
+        <select class="dash-select bt-c" aria-label="Discharge rate">
+          <option value="1">1C</option><option value="2">2C</option><option value="3" selected>3C</option>
+        </select></label>
+      <label>Configuration
+        <select class="dash-select bt-scale" aria-label="Configuration">
+          <option value="module" selected>2×2 module (4 × 18650)</option>
+          <option value="single_cell">Single 18650 cell</option>
+        </select></label>
+    </div>
+    <p class="bt-sub" style="margin-top:var(--cds-gap-sm)">Tiles compare the best metal-foam case (10 PPI copper foam + paraffin) with no PCM, same cell, same rate, 25&nbsp;°C chamber.</p>
+
+    <div class="bt-tiles">
+      <div class="bt-card" id="tile-peak">
+        <div class="bt-tile-label">Peak cell temperature</div>
+        <div class="bt-big"><span data-draw="kpi-peak" data-source="scorecard" data-field="peak_c">—</span>&nbsp;°C</div>
+        <div class="bt-cmp">vs <span data-draw="kpi-peak-base" data-source="scorecard" data-field="baseline_peak_c">—</span>&nbsp;°C no PCM ·
+          <span class="bt-good">−<span data-draw="kpi-peak-red" data-source="scorecard" data-field="peak_reduction_c">—</span>&nbsp;°C</span></div>
+      </div>
+      <div class="bt-card" id="tile-spread">
+        <div class="bt-tile-label">Max cell-to-cell spread (ΔT)</div>
+        <span data-draw="kpi-dt-mode" hidden></span>
+        <div class="bt-dt-mod">
+          <div class="bt-big"><span data-draw="kpi-dt" data-source="scorecard" data-field="dt_max_c">—</span>&nbsp;°C</div>
+          <div class="bt-cmp">vs <span data-draw="kpi-dt-base" data-source="scorecard" data-field="baseline_dt_c">—</span>&nbsp;°C no PCM · limit 5&nbsp;°C</div>
+        </div>
+        <div class="bt-dt-cell" hidden>
+          <div class="bt-big">n/a</div>
+          <div class="bt-cmp">A single cell has no cell-to-cell spread.</div>
+        </div>
+      </div>
+      <div class="bt-card" id="tile-exposure">
+        <div class="bt-tile-label">Time above 45&nbsp;°C</div>
+        <div class="bt-big"><span data-draw="kpi-exp" data-source="scorecard" data-field="min_above_45">—</span>&nbsp;min</div>
+        <div class="bt-cmp">vs <span data-draw="kpi-exp-base" data-source="scorecard" data-field="baseline_min_above_45">—</span>&nbsp;min no PCM</div>
+      </div>
+      <div class="bt-card" id="tile-thi">
+        <div class="bt-tile-label">Thermal Health Index (0–100)</div>
+        <div class="bt-big"><span data-draw="kpi-thi" data-source="scorecard" data-field="thi">—</span></div>
+        <div class="bt-cmp">vs <span data-draw="kpi-thi-base" data-source="scorecard" data-field="baseline_thi">—</span> no PCM ·
+          <span class="bt-good">+<span data-draw="kpi-thi-gain" data-source="scorecard" data-field="thi_gain">—</span></span></div>
+      </div>
+      <div class="bt-card" id="tile-pcm">
+        <div class="bt-tile-label">Paraffin melted at peak</div>
+        <div class="bt-big"><span data-draw="kpi-pcm" data-source="scorecard" data-field="pct_pcm_melted">—</span>&nbsp;%</div>
+        <div class="bt-cmp">Latent-heat reserve used (model)</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trace" class="bt-card">
+    <h2>Hottest-cell temperature through discharge and 10-minute rest</h2>
+    <p class="bt-sub">Dashed lines: 45&nbsp;°C warning, 60&nbsp;°C maximum operating limit. Shaded: rest period.</p>
+    <div class="bt-legend" data-draw="trace-legend"></div>
+    <div class="bt-chart" id="trace-chart" data-draw="trace" data-source="timeseries scorecard"></div>
+  </section>
+
+  <section id="spread" class="bt-card bt-spread-sec">
+    <h2>Module cell-to-cell spread over time</h2>
+    <p class="bt-sub">Hottest minus coldest cell. Dashed line: 5&nbsp;°C uniformity limit.</p>
+    <div class="bt-chart bt-short" id="spread-chart" data-draw="spread" data-source="timeseries scorecard"></div>
+  </section>
+
+  <div class="bt-two">
+    <section id="thi-board" class="bt-card">
+      <h2>Thermal Health Index — every run</h2>
+      <p class="bt-sub">Green ≥ 75 healthy · amber 50–75 watch · red &lt; 50 critical. Selected rate and configuration outlined.</p>
+      <div class="bt-chart" id="thi-chart" data-draw="thi" data-source="scorecard"></div>
+    </section>
+    <section id="evidence" class="bt-card">
+      <h2>Published evidence: peak temperature with and without metal foam</h2>
+      <p class="bt-sub">Grey dot: baseline (no PCM, or pure PCM where marked). Coloured dot: metal-foam composite. “≤” = paper reports an upper bound.</p>
+      <div class="bt-chart" id="evidence-chart" data-draw="evidence" data-source="evidence"></div>
+    </section>
+  </div>
+
+  <section id="scorecard" class="bt-card">
+    <h2>Run scorecard</h2>
+    <p class="bt-sub">Each row is one test run; “Published peak” is the value from the paper the run is anchored to.</p>
+    <div class="bt-tablewrap">
+      <table class="bt-table" data-source="scorecard" data-row-key="run_id">
+        <thead><tr>
+          <th data-field="run_id">Run</th><th data-field="pack_label" class="bt-l">Configuration</th>
+          <th data-field="tms_short" class="bt-l">Cooling</th><th data-field="c_rate">C-rate</th>
+          <th data-field="peak_c">Peak °C</th><th data-field="published_peak_c">Published peak °C</th>
+          <th data-field="dt_max_c">ΔT °C</th><th data-field="min_above_45">Min &gt; 45 °C</th>
+          <th data-field="pct_pcm_melted">PCM melted %</th><th data-field="thi">THI</th><th data-field="health_band">Band</th>
+        </tr></thead>
+        <tbody data-draw="score-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="relative" class="bt-card">
+    <h2>Studies reporting only relative reductions</h2>
+    <p class="bt-sub">These papers give percentages, not temperatures, so they sit outside the charts above.</p>
+    <div class="bt-tablewrap">
+      <table class="bt-table" data-source="relative" data-row-key="rel_id">
+        <thead><tr><th data-field="short_cite">Study</th><th data-field="foam_tms" class="bt-l">Composite</th>
+          <th data-field="baseline_tms" class="bt-l">Compared with</th><th data-field="c_rate">C-rate</th>
+          <th data-field="reduction_pct">Reduction %</th></tr></thead>
+        <tbody data-draw="rel-rows"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="pipeline" class="bt-card">
+    <h2>Pipeline health</h2>
+    <p class="bt-sub" style="margin:0"><b data-draw="dq-pass" data-source="dq_pass">—</b> of <b data-draw="dq-total" data-source="dq_total">—</b> data-quality checks passed in the latest ETL batch (key integrity, value ranges, calibration accuracy, physical sanity).</p>
+  </section>
+
+  <details id="method">
+    <summary>Definitions, method and sources</summary>
+    <p><b>Thermal Health Index (THI)</b> — a 0–100 score per run: 50% peak score (100 at ≤ 35&nbsp;°C, 0 at ≥ 60&nbsp;°C), 20% exposure score (share of the run spent at or below 45&nbsp;°C), 30% uniformity score (100 at 0&nbsp;°C spread, 0 at ≥ 10&nbsp;°C; single cells skip this part and the weights rescale). Thresholds live in the warehouse table <code>dim_threshold</code>.</p>
+    <p><b>Reconstruction</b> — a lumped thermal model (cell node + enthalpy-method paraffin/copper-foam node). For each run one parameter is fitted so the simulated peak equals the published peak: heat generation for no-PCM single cells, then effective cooling or a thermal-path scale for the others; module runs also fit a cell-to-cell heat spread to match the published ΔT. Cell-to-composite conductance comes from the paper's measured foam conductivity (4.42 and 2.89 W/m·K; 20 PPI interpolated).</p>
+    <p><b>Limits</b> — the published module tests had no 20/30 PPI peaks, so only 10 PPI is shown for the module. No published study matched a 3×2 or 4×2 layout with a full data set; the 2×2 and 4×4 modules are the closest. Ambient was not stated in Wang Z. et al. 2017, and its foam case was insulated while its baseline was open air.</p>
+    <ul data-draw="src-list" data-source="sources"></ul>
+  </details>
+</div>
+
+<script>
+window.BT = (function () {
+  const sel = { c: 3, scale: 'module' };
+  const num = (v) => (v === null || v === undefined || v === '' ? null : +v);
+  const rows = (id) => { const d = dash.data(id); return d.status === 'ok' ? d.data : null; };
+  const runFoam = () => `S1_${sel.scale === 'module' ? 'MOD' : 'CELL'}_CF_PA_10PPI_${sel.c}C`;
+  const bandColor = (b) => b === 'Healthy' ? 'var(--color-ok)' : b === 'Watch' ? 'var(--color-warn)' : 'var(--color-bad)';
+  const fmt1 = (v) => v === null ? '—' : d3.format('.1f')(v);
+  const names = ['kpi-peak','kpi-peak-base','kpi-peak-red','kpi-dt-mode','kpi-dt','kpi-dt-base','kpi-exp','kpi-exp-base',
+                 'kpi-thi','kpi-thi-base','kpi-thi-gain','kpi-pcm','trace','trace-legend','spread','thi'];
+  return { sel, num, rows, runFoam, bandColor, fmt1, redraw: () => names.forEach((n) => dash.draw(n)) };
+})();
+
+document.querySelectorAll('.bt-c').forEach((s) => s.addEventListener('change', () => { BT.sel.c = +s.value; BT.redraw(); }));
+const btToggleSpread = () => document.querySelectorAll('.bt-spread-sec').forEach((e) => { e.hidden = BT.sel.scale !== 'module'; });
+document.querySelectorAll('.bt-scale').forEach((s) => s.addEventListener('change', () => { BT.sel.scale = s.value; btToggleSpread(); BT.redraw(); }));
+dash.onData(btToggleSpread);
+</script>
+
+<script>
+dash.calc('dq_pass', { inputs: ['dq'], title: 'Checks passed', description: 'Data-quality checks with status PASS in the latest batch',
+  fn: (dq) => dq.filter((r) => r.status === 'PASS').length });
+dash.calc('dq_total', { inputs: ['dq'], title: 'Checks run', description: 'All data-quality checks in the latest batch',
+  fn: (dq) => dq.length });
+
+function valueDraw(name, run, field, digits) {
+  dash.draw(name, (el) => {
+    const r = BT.rows('scorecard'); const id = typeof run === 'function' ? run() : run;
+    el.setAttribute('data-where', 'run_id=' + id);
+    const row = r && r.find((x) => x.run_id === id);
+    const v = row ? BT.num(row[field]) : null;
+    el.textContent = v === null ? '—' : d3.format(digits)(v);
+  });
+}
+valueDraw('tk-foam', 'S1_MOD_CF_PA_10PPI_3C', 'peak_c', '.1f');
+valueDraw('tk-base', 'S1_MOD_NC_3C', 'peak_c', '.1f');
+valueDraw('tk-dtb', 'S1_MOD_NC_3C', 'dt_max_c', '.1f');
+valueDraw('tk-dtf', 'S1_MOD_CF_PA_10PPI_3C', 'dt_max_c', '.1f');
+valueDraw('kpi-peak', BT.runFoam, 'peak_c', '.1f');
+valueDraw('kpi-peak-base', BT.runFoam, 'baseline_peak_c', '.1f');
+valueDraw('kpi-peak-red', BT.runFoam, 'peak_reduction_c', '.1f');
+valueDraw('kpi-dt', BT.runFoam, 'dt_max_c', '.1f');
+valueDraw('kpi-dt-base', BT.runFoam, 'baseline_dt_c', '.1f');
+valueDraw('kpi-exp', BT.runFoam, 'min_above_45', '.1f');
+valueDraw('kpi-exp-base', BT.runFoam, 'baseline_min_above_45', '.1f');
+valueDraw('kpi-thi', BT.runFoam, 'thi', '.1f');
+valueDraw('kpi-thi-base', BT.runFoam, 'baseline_thi', '.1f');
+valueDraw('kpi-thi-gain', BT.runFoam, 'thi_gain', '.1f');
+valueDraw('kpi-pcm', BT.runFoam, 'pct_pcm_melted', '.0f');
+
+dash.draw('kpi-dt-mode', (el) => {
+  const card = el.closest('.bt-card'); if (!card) return;
+  const mod = BT.sel.scale === 'module';
+  card.querySelectorAll('.bt-dt-mod').forEach((e) => { e.hidden = !mod; });
+  card.querySelectorAll('.bt-dt-cell').forEach((e) => { e.hidden = mod; });
+});
+
+dash.draw('dq-pass', (el) => { const d = dash.data('dq_pass'); el.textContent = d.status === 'ok' ? d.data : '—'; });
+dash.draw('dq-total', (el) => { const d = dash.data('dq_total'); el.textContent = d.status === 'ok' ? d.data : '—'; });
+</script>
+
+<script>
+// ---------- shared: runs in the current selection ----------
+window.BT.selRuns = function () {
+  const sc = BT.rows('scorecard'); if (!sc) return null;
+  return sc.filter((r) => r.pack_scale === BT.sel.scale && +r.c_rate === BT.sel.c)
+           .sort((a, b) => (a.tms_family === 'NO_PCM' ? -1 : 1) - (b.tms_family === 'NO_PCM' ? -1 : 1) || (+a.foam_ppi) - (+b.foam_ppi));
+};
+window.BT.colorFor = function (r, i) { return r.tms_family === 'NO_PCM' ? 'var(--cds-chart-muted)' : dash.colors[(i - 1) % dash.colors.length]; };
+
+function lineChart(el, field, opts) {
+  el.replaceChildren();
+  const runs = BT.selRuns(); const ts = BT.rows('timeseries');
+  const st = dash.data('timeseries').status;
+  if (st === 'error' || dash.data('scorecard').status === 'error') { const p = document.createElement('p'); p.className = 'bt-err'; p.textContent = 'This chart could not load its data.'; el.append(p); return; }
+  if (!runs || !ts) { el.textContent = '—'; return; }
+  const series = runs.map((r, i) => ({ r, color: BT.colorFor(r, i),
+    pts: ts.filter((p) => p.run_id === r.run_id).map((p) => ({ t: +p.t_min, v: +p[field] })) })).filter((s) => s.pts.length);
+  const W = Math.max(280, el.clientWidth), H = opts.h, m = { t: 10, r: 14, b: 32, l: 40 };
+  const tmax = d3.max(series, (s) => d3.max(s.pts, (p) => p.t)) || 1;
+  const vmax = Math.max(opts.minTop, d3.max(series, (s) => d3.max(s.pts, (p) => p.v)) || 0);
+  const x = d3.scaleLinear([0, tmax], [m.l, W - m.r]);
+  const y = d3.scaleLinear([opts.y0, vmax * 1.05], [H - m.b, m.t]).nice();
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+    .attr('aria-label', opts.aria);
+  const disch = 60 / BT.sel.c;
+  svg.append('rect').attr('x', x(disch)).attr('y', m.t).attr('width', Math.max(0, x(tmax) - x(disch))).attr('height', H - m.b - m.t)
+    .style('fill', 'var(--cds-chart-grid)').style('opacity', 0.5);
+  svg.append('g').attr('class', 'bt-grid').attr('transform', `translate(${m.l},0)`)
+    .call(d3.axisLeft(y).ticks(5).tickSize(-(W - m.l - m.r)).tickFormat('')).call((g) => g.select('.domain').remove());
+  svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor(W / 90))).tickFormat((d) => d + ' min'));
+  svg.append('g').attr('transform', `translate(${m.l},0)`).call(d3.axisLeft(y).ticks(5));
+  (opts.refs || []).forEach((ref) => {
+    if (ref.v > y.domain()[1]) return;
+    svg.append('line').attr('x1', m.l).attr('x2', W - m.r).attr('y1', y(ref.v)).attr('y2', y(ref.v))
+      .style('stroke', ref.critical ? 'var(--cds-chart-status-critical)' : 'var(--cds-chart-reference)').style('stroke-dasharray', '4 4');
+    svg.append('text').attr('x', W - m.r).attr('y', y(ref.v) - 4).attr('text-anchor', 'end').text(ref.label);
+  });
+  const line = d3.line().x((p) => x(p.t)).y((p) => y(p.v));
+  series.forEach((s) => svg.append('path').attr('d', line(s.pts)).style('fill', 'none').style('stroke', s.color).style('stroke-width', 2));
+  // tooltip
+  const tip = document.createElement('div'); tip.className = 'bt-tip'; tip.hidden = true; el.append(tip);
+  const guide = svg.append('line').attr('y1', m.t).attr('y2', H - m.b).style('stroke', 'var(--cds-chart-axis)').style('opacity', 0);
+  svg.append('rect').attr('x', m.l).attr('y', m.t).attr('width', W - m.l - m.r).attr('height', H - m.b - m.t).style('fill', 'transparent')
+    .on('pointermove', (ev) => {
+      const [px] = d3.pointer(ev); const t = x.invert(px);
+      guide.attr('x1', px).attr('x2', px).style('opacity', 1);
+      tip.replaceChildren();
+      const head = document.createElement('div'); head.textContent = d3.format('.1f')(t) + ' min'; tip.append(head);
+      series.forEach((s) => {
+        const p = s.pts[d3.minIndex(s.pts, (q) => Math.abs(q.t - t))];
+        const row = document.createElement('div'); row.style.color = s.color === 'var(--cds-chart-muted)' ? 'var(--color-fg-muted)' : s.color;
+        row.textContent = `${s.r.tms_short}: ${d3.format('.1f')(p.v)} ${opts.unit}`; tip.append(row);
+      });
+      tip.hidden = false;
+      const bw = el.clientWidth; const left = Math.min(Math.max(0, px * bw / W + 12), bw - tip.offsetWidth - 4);
+      tip.style.left = left + 'px'; tip.style.top = '8px';
+    })
+    .on('pointerleave', () => { tip.hidden = true; guide.style('opacity', 0); });
+}
+
+dash.draw('trace', (el) => lineChart(el, 'hot_c', { h: 300, y0: 20, minTop: 62, unit: '°C',
+  aria: 'Line chart of hottest-cell temperature over time for each cooling option at the selected rate',
+  refs: [{ v: 45, label: '45 °C warning' }, { v: 60, label: '60 °C limit', critical: true }] }));
+dash.draw('spread', (el) => lineChart(el, 'spread_c', { h: 180, y0: 0, minTop: 6, unit: '°C spread',
+  aria: 'Line chart of module cell-to-cell temperature spread over time', refs: [{ v: 5, label: '5 °C limit' }] }));
+
+dash.draw('trace-legend', (el) => {
+  el.replaceChildren(); const runs = BT.selRuns(); if (!runs) return;
+  runs.forEach((r, i) => { const s = document.createElement('span'); s.style.setProperty('--sw', BT.colorFor(r, i)); s.textContent = r.tms_short; el.append(s); });
+});
+</script>
+
+<script>
+// ---------- THI board ----------
+dash.draw('thi', (el) => {
+  el.replaceChildren();
+  const sc = BT.rows('scorecard');
+  if (dash.data('scorecard').status === 'error') { const p = document.createElement('p'); p.className = 'bt-err'; p.textContent = 'Scores could not load.'; el.append(p); return; }
+  if (!sc) { el.textContent = '—'; return; }
+  const data = sc.slice().sort((a, b) => b.thi - a.thi);
+  const label = (r) => `${r.pack_scale === 'module' ? '2×2 module' : 'Cell'} · ${r.c_rate}C · ${r.tms_family === 'NO_PCM' ? 'No PCM' : r.foam_ppi + ' PPI foam'}`;
+  const W = Math.max(280, el.clientWidth), rowH = 22, H = data.length * rowH + 10;
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+    .attr('aria-label', 'Bar chart of Thermal Health Index for all runs, highest first');
+  const probe = svg.append('text').text(label(data.reduce((a, b) => (label(a).length > label(b).length ? a : b))));
+  const lw = Math.min(W * 0.55, (probe.node().getComputedTextLength() || 160) + 8); probe.remove();
+  const x = d3.scaleLinear([0, 100], [lw, W - 36]);
+  const g = svg.selectAll('g.r').data(data).join('g').attr('transform', (d, i) => `translate(0,${i * rowH + 4})`);
+  g.append('text').attr('x', lw - 6).attr('y', 13).attr('text-anchor', 'end').text(label);
+  g.append('rect').attr('x', x(0)).attr('y', 3).attr('height', rowH - 8).attr('width', (d) => Math.max(1, x(+d.thi) - x(0)))
+    .style('fill', (d) => BT.bandColor(d.health_band)).style('opacity', 0.85)
+    .style('stroke', (d) => (d.pack_scale === BT.sel.scale && +d.c_rate === BT.sel.c ? 'var(--color-fg)' : 'none')).style('stroke-width', 1.5);
+  g.append('text').attr('x', (d) => x(+d.thi) + 4).attr('y', 13).text((d) => d3.format('.0f')(+d.thi));
+});
+
+// ---------- evidence dumbbell ----------
+dash.draw('evidence', (el) => {
+  el.replaceChildren();
+  const ev = BT.rows('evidence');
+  if (dash.data('evidence').status === 'error') { const p = document.createElement('p'); p.className = 'bt-err'; p.textContent = 'Evidence could not load.'; el.append(p); return; }
+  if (!ev) { el.textContent = '—'; return; }
+  const W = Math.max(280, el.clientWidth), rowH = 40, m = { l: 8, r: 16, t: 4, b: 26 }, H = ev.length * rowH + m.t + m.b;
+  const x = d3.scaleLinear([25, d3.max(ev, (d) => +d.baseline_t_max_c) + 4], [m.l, W - m.r]).nice();
+  const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img')
+    .attr('aria-label', 'Dumbbell chart of published peak temperatures, baseline versus metal-foam composite, for each study and condition');
+  svg.append('g').attr('transform', `translate(0,${H - m.b})`).call(d3.axisBottom(x).ticks(Math.max(3, Math.floor(W / 80))).tickFormat((d) => d + ' °C'));
+  [45, 60].forEach((v) => svg.append('line').attr('x1', x(v)).attr('x2', x(v)).attr('y1', m.t).attr('y2', H - m.b)
+    .style('stroke', v === 60 ? 'var(--cds-chart-status-critical)' : 'var(--cds-chart-reference)').style('stroke-dasharray', '3 4'));
+  const short = (d) => `${d.short_cite} · ${d.pack_label.replace(' (2S2P)', '').replace(' (Sanyo)', '')} · ${d.foam_tms.replace(' / paraffin (LMA-encapsulated)', '').replace('Copper foam', 'Cu foam')} · ${d.c_rate}C${d.ambient_c ? ' · ' + (+d.ambient_c) + ' °C' : ''}${d.baseline_tms === 'Pure paraffin' ? ' · vs pure PCM' : ''}`;
+  const tip = document.createElement('div'); tip.className = 'bt-tip'; tip.hidden = true; el.append(tip);
+  const g = svg.selectAll('g.r').data(ev).join('g').attr('transform', (d, i) => `translate(0,${m.t + i * rowH})`);
+  g.append('text').attr('x', m.l).attr('y', 12).text(short).each(function () {
+    let t = d3.select(this).text(); while (this.getComputedTextLength() > W - m.l - m.r && t.length > 10) { t = t.slice(0, -2); d3.select(this).text(t + '…'); }
+  });
+  g.append('line').attr('x1', (d) => x(+d.foam_t_max_c)).attr('x2', (d) => x(+d.baseline_t_max_c)).attr('y1', 26).attr('y2', 26)
+    .style('stroke', 'var(--cds-chart-grid)').style('stroke-width', 3);
+  g.append('circle').attr('cx', (d) => x(+d.baseline_t_max_c)).attr('cy', 26).attr('r', 5).style('fill', 'var(--cds-chart-muted)');
+  g.append('circle').attr('cx', (d) => x(+d.foam_t_max_c)).attr('cy', 26).attr('r', 5).style('fill', dash.colors[0]);
+  g.append('text').attr('x', (d) => x(+d.foam_t_max_c) - 8).attr('y', 30).attr('text-anchor', 'end')
+    .text((d) => (d.t_max_qualifier === '<=' ? '≤' : '') + d3.format('.1f')(+d.foam_t_max_c));
+  g.append('text').attr('x', (d) => x(+d.baseline_t_max_c) + 8).attr('y', 30).text((d) => d3.format('.1f')(+d.baseline_t_max_c));
+  g.append('rect').attr('x', 0).attr('y', 0).attr('width', W).attr('height', rowH).style('fill', 'transparent')
+    .on('pointermove', (ev2, d) => {
+      tip.replaceChildren();
+      [short(d), `Baseline (${d.baseline_tms}): ${d.baseline_t_max_c} °C`, `Metal foam: ${d.t_max_qualifier === '<=' ? '≤ ' : ''}${d.foam_t_max_c} °C`,
+       `Reduction: ${d.peak_reduction_c} °C (${d.peak_reduction_pct}%)`, `Evidence rows: ${d.evidence}`].forEach((t) => { const r = document.createElement('div'); r.textContent = t; tip.append(r); });
+      tip.hidden = false;
+      const [px, py] = d3.pointer(ev2, el); tip.style.left = Math.max(0, Math.min(px + 10, el.clientWidth - tip.offsetWidth - 4)) + 'px'; tip.style.top = (py + 12) + 'px';
+    })
+    .on('pointerleave', () => { tip.hidden = true; });
+});
+</script>
+
+<script>
+// ---------- tables + sources ----------
+function cell(tr, text, cls, color) { const td = document.createElement('td'); td.textContent = text; if (cls) td.className = cls; if (color) td.style.color = color; tr.append(td); return td; }
+dash.draw('score-rows', (tb) => {
+  tb.replaceChildren(); const sc = BT.rows('scorecard'); if (!sc) return;
+  sc.forEach((r) => {
+    const tr = document.createElement('tr');
+    cell(tr, r.run_id); cell(tr, r.pack_label, 'bt-l'); cell(tr, r.tms_short, 'bt-l'); cell(tr, r.c_rate + 'C');
+    cell(tr, BT.fmt1(BT.num(r.peak_c))); cell(tr, BT.fmt1(BT.num(r.published_peak_c)));
+    cell(tr, r.pack_scale === 'module' ? BT.fmt1(BT.num(r.dt_max_c)) : '—');
+    cell(tr, BT.fmt1(BT.num(r.min_above_45))); cell(tr, r.tms_family === 'NO_PCM' ? '—' : d3.format('.0f')(+r.pct_pcm_melted));
+    cell(tr, BT.fmt1(BT.num(r.thi)));
+    const td = cell(tr, ''); const pill = document.createElement('span'); pill.className = 'bt-pill'; pill.style.color = BT.bandColor(r.health_band); pill.textContent = r.health_band; td.append(pill);
+    tb.append(tr);
+  });
+});
+dash.draw('rel-rows', (tb) => {
+  tb.replaceChildren(); const rl = BT.rows('relative'); if (!rl) return;
+  rl.forEach((r) => {
+    const tr = document.createElement('tr'); tr.setAttribute('data-key', r.rel_id);
+    cell(tr, r.short_cite); cell(tr, r.foam_tms, 'bt-l'); cell(tr, r.baseline_tms, 'bt-l'); cell(tr, r.c_rate + 'C'); cell(tr, r.reduction_pct);
+    tb.append(tr);
+  });
+});
+dash.draw('src-list', (ul) => {
+  ul.replaceChildren(); const s = BT.rows('sources'); if (!s) return;
+  s.forEach((r) => {
+    const li = document.createElement('li');
+    const strong = document.createElement('b'); strong.textContent = r.short_cite + '. '; li.append(strong);
+    li.append(document.createTextNode(`${r.title}. ${r.journal}${r.year ? ', ' + r.year : ''}. `));
+    const url = r.doi ? 'https://doi.org/' + r.doi : r.open_url;
+    if (url && /^https?:\/\//.test(url)) { const a = document.createElement('a'); a.href = url; a.target = '_blank'; a.rel = 'noopener'; a.textContent = r.doi ? 'doi:' + r.doi : 'link'; li.append(a); }
+    ul.append(li);
+  });
+});
+</script>

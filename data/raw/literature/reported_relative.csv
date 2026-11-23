@@ -1,0 +1,8 @@
+rel_id,source_id,pack_id,material_id,baseline_material_id,c_rate,metric,reduction_pct,value_basis,note
+L001,S5,CELL_UNSPEC_S5,M_S5_NF,M_S5_NC,2,SURFACE_T_REDUCTION,31,reported,"nickel foam/paraffin vs natural air"
+L002,S5,CELL_UNSPEC_S5,M_S5_NF,M_S5_PCM,2,SURFACE_T_REDUCTION,24,reported,"nickel foam/paraffin vs pure PCM"
+L003,S6,CELL18650_S6,M_S6_NF,M_S6_NC,2,SURFACE_T_REDUCTION,30.95,reported,"nickel foam/paraffin vs ambient air"
+L004,S6,CELL18650_S6,M_S6_NF,M_S6_PCM,2,SURFACE_T_REDUCTION,24,reported,"nickel foam/paraffin vs paraffin"
+L005,S6,CELL18650_S6,M_S6_CF,M_S6_NC,2,SURFACE_T_REDUCTION,34,reported,"copper foam/paraffin vs ambient air"
+L006,S6,CELL18650_S6,M_S6_CF,M_S6_PCM,2,SURFACE_T_REDUCTION,25,reported,"copper foam/paraffin vs paraffin"
+L007,S3,MOD21700_4x4_S3,M_S3_CF,M_S3_PCM,3,T_MAX_REDUCTION,10.4,reported,"60% DoD, 3C"

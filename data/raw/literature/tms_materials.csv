@@ -1,0 +1,21 @@
+material_id,source_id,tms_code,tms_label,foam_metal,foam_ppi,foam_porosity,pcm_name,pcm_melt_c,pcm_melt_range_c,pcm_latent_j_per_g,composite_latent_j_per_g,k_eff_w_per_mk,pcm_mass_g_per_cell,foam_mass_g_per_cell,encapsulation,basis_note
+M_S1_NC,S1,NC,Natural convection (no PCM),,,,,,,,,,,,,reported
+M_S1_F1,S1,CF_PA_10PPI,Copper foam 10 PPI / paraffin (LMA-encapsulated),Cu,10,0.935,paraffin,42,2,220,217.0,4.42,,,Sn-Bi-Pb-Cd alloy,"k and porosity reported; composite latent = 220 x impregnation 98.66%; PCM mass per cell derived from module geometry"
+M_S1_F2,S1,CF_PA_20PPI,Copper foam 20 PPI / paraffin (LMA-encapsulated),Cu,20,0.955,paraffin,42,2,220,206.1,,,,Sn-Bi-Pb-Cd alloy,"k not stated in text"
+M_S1_F3,S1,CF_PA_30PPI,Copper foam 30 PPI / paraffin (LMA-encapsulated),Cu,30,0.965,paraffin,42,2,220,195.2,2.89,,,Sn-Bi-Pb-Cd alloy,"k and porosity reported"
+M_S2_NC,S2,NC,Natural convection (no PCM),,,,,,,,,,,,,reported
+M_S2_CF_26650,S2,CF_PA,Copper foam / refined paraffin,Cu,,,refined paraffin,46,2,142.7,84.02,,13.34,6.77,none,"masses reported (Table 3)"
+M_S2_CF_42110,S2,CF_PA,Copper foam / refined paraffin,Cu,,,refined paraffin,46,2,142.7,84.02,,31.24,15.39,none,"masses reported (Table 3)"
+M_S2_CF_PRISM,S2,CF_PA,Copper foam / refined paraffin,Cu,,,refined paraffin,46,2,142.7,84.02,,51.60,25.41,none,"masses reported (Table 3)"
+M_S3_NC,S3,NC,Natural air,,,,,,,,,,,,,reported
+M_S3_PCM,S3,PCM_PA,Pure paraffin,,,,paraffin,,,,,,,,,reported
+M_S3_CF,S3,CF_PA,Copper foam / paraffin,Cu,,,paraffin,,,,,,,,,reported
+M_S4_NC,S4,NC,Natural convection (no PCM melt),,,,,,,,,,,,,reported
+M_S4_CF,S4,CF_PA,Copper foam / n-eicosane composite (PCSEU),Cu,,0.95,n-eicosane,37,2,241,135,5.28,,,aluminium casing,reported
+M_S5_NC,S5,NC,Natural air convection,,,,,,,,,,,,,reported
+M_S5_PCM,S5,PCM_PA,Pure paraffin,,,,paraffin,,,,,,,,,reported
+M_S5_NF,S5,NF_PA,Nickel foam / paraffin,Ni,,,paraffin,,,,,,,,,reported
+M_S6_NC,S6,NC,Ambient air convection,,,,,,,,,,,,,reported
+M_S6_PCM,S6,PCM_PA,Pure paraffin,,,,paraffin,,,,,,,,,reported
+M_S6_NF,S6,NF_PA,Nickel foam / paraffin,Ni,,,paraffin,,,,,,,,,reported
+M_S6_CF,S6,CF_PA,Copper foam / paraffin,Cu,,,paraffin,,,,,,,,,reported

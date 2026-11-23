@@ -1,0 +1,3 @@
+run_id,pack_id,material_id,c_rate,ambient_c,dod_pct,cell_id,t_s,temp_c,phase
+LAB_EXAMPLE_RUN,MOD18650_4x2_LAB,M_LAB_CF_PA,3,25,100,C1_R1C1,0,25.0,discharge
+LAB_EXAMPLE_RUN,MOD18650_4x2_LAB,M_LAB_CF_PA,3,25,100,C1_R1C1,10,25.2,discharge

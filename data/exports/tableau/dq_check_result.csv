@@ -1,0 +1,21 @@
+batch_id,check_name,target_table,status,failed_rows,detail
+B20261123040709,unique_source_id,sources,PASS,0,duplicate source_id
+B20261123040709,unique_pack_id,packs,PASS,0,duplicate pack_id
+B20261123040709,unique_material_id,materials,PASS,0,duplicate material_id
+B20261123040709,unique_meas_id,measurements,PASS,0,duplicate meas_id
+B20261123040709,unique_rel_id,relative,PASS,0,duplicate rel_id
+B20261123040709,fk_meas_source,measurements,PASS,0,
+B20261123040709,fk_meas_pack,measurements,PASS,0,
+B20261123040709,fk_meas_material,measurements,PASS,0,
+B20261123040709,fk_rel_material,relative,PASS,0,
+B20261123040709,range_t_max_0_120C,measurements,PASS,0,
+B20261123040709,range_dt_0_30C,measurements,PASS,0,
+B20261123040709,range_c_rate,measurements,PASS,0,
+B20261123040709,doi_or_url_present,sources,PASS,0,
+B20261123040709,foam_peak_le_baseline,measurements,PASS,0,metal-foam peak above no-PCM peak
+B20261123040709,reconstruction_peak_within_0.05C,fact_run,PASS,0,
+B20261123040709,reconstruction_dt_within_0.05C,fact_run,PASS,0,
+B20261123040709,log_no_null_temp,fact_thermal_log,PASS,0,
+B20261123040709,log_unique_grain,fact_thermal_log,PASS,0,
+B20261123040709,post_load_foreign_keys,warehouse,PASS,0,
+B20261123040709,post_load_every_run_scored,vw_run_kpi,PASS,0,
