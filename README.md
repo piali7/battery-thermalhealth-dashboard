@@ -5,6 +5,15 @@ phase-change-material (PCM) battery cooling → Python ETL → SQL star-schema w
 thermal-health KPI layer → Tableau extracts + web dashboard.** It is built so your own lab
 logs (e.g. a 4×2 or 3×2 module) drop straight into the same pipeline.
 
+![Dashboard preview](docs/dashboard_preview.png)
+
+*At 3C discharge, a 10 PPI copper-foam/paraffin composite held a 2×2 18650 module at 44.6 °C instead of 75.9 °C
+without PCM, and cut the cell-to-cell spread from 10.2 °C to 1.2 °C (published values, He et al. 2025). Curves are
+from a thermal model calibrated to those values. Every number is derived step by step in the
+[calculation workbook](docs/CALCULATION_WORKBOOK.md).*
+
+Built with Claude Code.
+
 ## Quick start (Windows / macOS / Linux)
 
 ```bash
